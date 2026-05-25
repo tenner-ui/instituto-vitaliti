@@ -22,20 +22,25 @@ button,.btn-primary,.btn-ghost,.cta-nav,.tab-btn,.tier-cta,.maps-link,.form-grid
 .founder-photo{border-radius:20px}
 .team-card{overflow:hidden}
 img.logo-emblem{border-radius:0}
-body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--brown);line-height:1.65;overflow-x:hidden;font-weight:300;position:relative}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--brown);line-height:1.65;overflow-x:hidden;overflow-y:auto;font-weight:300;position:relative}
+
+/* ===== BARRA DE ROLAGEM ESTILIZADA ===== */
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{background:var(--cream-warm)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:6px;border:2px solid var(--cream-warm)}
+::-webkit-scrollbar-thumb:hover{background:var(--gold-light)}
+html{scrollbar-color:var(--gold) var(--cream-warm);scrollbar-width:thin}
 
 /* ===== MARCA D'ÁGUA DE FUNDO (logo fixa, não rola) ===== */
 .watermark{position:fixed;inset:0;z-index:0;pointer-events:none;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .watermark img{width:min(70vw,650px);max-width:none;opacity:.13;filter:saturate(1.3) brightness(1.15);user-select:none;-webkit-user-drag:none}
 
 /* Garantir que conteúdo fica acima da marca d'água */
-.topbar,nav,section,footer,.wa-float,.intro-overlay{position:relative;z-index:1}
+.topbar,nav,section,footer,.wa-float{position:relative;z-index:1}
 nav{position:sticky;z-index:100}
-.intro-overlay{z-index:9999}
 .wa-float{z-index:98}
 
 /* Seções claras semi-transparentes pra deixar a marca d'água aparecer */
-.philosophy{background:rgba(247,243,234,.5)}
 .offerings{background:linear-gradient(180deg,rgba(239,232,218,.55) 0%,rgba(247,243,234,.5) 100%)}
 .formats{background:rgba(247,243,234,.5)}
 .founder{background:linear-gradient(180deg,rgba(239,232,218,.55) 0%,rgba(247,243,234,.5) 100%)}
@@ -46,22 +51,12 @@ nav{position:sticky;z-index:100}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 
-/* ===== INTRO VIDEO OVERLAY ===== */
-.intro-overlay{position:fixed;inset:0;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;transition:opacity .8s ease,visibility .8s ease;opacity:1;visibility:visible}
-.intro-overlay.hidden{opacity:0;visibility:hidden;pointer-events:none}
-.intro-video{width:100%;height:100%;object-fit:cover;background:#000}
-.intro-skip{position:absolute;top:24px;right:24px;background:rgba(247,243,234,.1);color:var(--cream);border:1px solid rgba(247,243,234,.3);padding:10px 22px;font-family:'Inter',sans-serif;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;cursor:pointer;z-index:10;backdrop-filter:blur(10px);transition:all .3s;display:flex;align-items:center;gap:8px}
-.intro-skip:hover{background:rgba(247,243,234,.2);border-color:var(--gold)}
-.intro-loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--cream);font-family:'Cormorant Garamond',serif;font-style:italic;gap:24px}
-.intro-loading-logo{width:120px;opacity:.7;animation:pulse 2s ease-in-out infinite}
-.intro-loading-text{font-size:1.05rem;letter-spacing:.15em;text-transform:uppercase;opacity:.6;font-family:'Cinzel',serif;font-style:normal}
-@keyframes pulse{0%,100%{opacity:.5;transform:scale(.98)}50%{opacity:.8;transform:scale(1.02)}}
 
 .vitality-logo{display:flex;align-items:center;gap:14px;line-height:1;text-decoration:none}
-.vitality-logo .logo-emblem{height:64px;width:auto;flex-shrink:0;object-fit:contain;transition:transform .3s;display:block}
+.vitality-logo .logo-emblem{height:70px;width:auto;flex-shrink:0;object-fit:contain;display:block;transition:transform .3s;mix-blend-mode:multiply}
 .vitality-logo:hover .logo-emblem{transform:scale(1.04)}
-nav.scrolled .vitality-logo .logo-emblem{height:54px}
-footer .vitality-logo .logo-emblem{height:90px}
+nav.scrolled .vitality-logo .logo-emblem{height:58px}
+footer .vitality-logo .logo-emblem{height:100px;mix-blend-mode:screen}
 
 .topbar{background:var(--forest-deep);color:var(--gold-soft);text-align:center;padding:9px 20px;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:400}
 .topbar strong{color:var(--cream);font-weight:500}
@@ -102,7 +97,14 @@ h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.1rem,3.8vw,3.2rem);c
 h2 em{color:var(--gold);font-style:italic}
 .lead{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--brown);max-width:720px;margin:0 auto;line-height:1.6;font-style:italic;opacity:.9}
 
-.philosophy{background:var(--cream)}
+.philosophy{
+  background:
+    linear-gradient(to bottom, rgba(247,243,234,.55) 0%, rgba(247,243,234,.85) 70%, var(--cream) 100%),
+    url('instituto-fachada.jpeg') no-repeat center top;
+  background-size: cover, cover;
+  background-attachment: scroll, scroll;
+  position:relative;
+}
 .philo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:50px;margin-top:40px}
 .philo-card{text-align:left;padding:8px 0 8px 28px;border-left:1px solid var(--line);position:relative}
 .philo-card::before{content:'';position:absolute;top:8px;left:-1px;width:3px;height:42px;background:var(--gold)}
@@ -282,20 +284,6 @@ footer .footer-grid{grid-template-columns:1fr;gap:30px}
 </style>
 </head>
 <body>
-
-<!-- ===== INTRO VIDEO OVERLAY ===== -->
-<div class="intro-overlay" id="introOverlay">
-  <button class="intro-skip" onclick="skipIntro()">
-    Pular <span>→</span>
-  </button>
-  <video class="intro-video" autoplay muted playsinline onended="skipIntro()" id="introVideo">
-    <source src="boas-vindas.mp4" type="video/mp4">
-  </video>
-  <div class="intro-loading" id="introFallback">
-    <img src="logo.jpeg" alt="Instituto Vitality" class="intro-loading-logo" onerror="this.style.display='none'">
-    <p class="intro-loading-text">Instituto Vitality</p>
-  </div>
-</div>
 
 <!-- ===== MARCA D'ÁGUA FIXA DE FUNDO ===== -->
 <div class="watermark" aria-hidden="true">
@@ -802,35 +790,6 @@ footer .footer-grid{grid-template-columns:1fr;gap:30px}
 </a>
 
 <script>
-// === INTRO VIDEO LOGIC ===
-function skipIntro(){
-  document.getElementById('introOverlay').classList.add('hidden');
-  document.body.style.overflow='auto';
-  sessionStorage.setItem('introWatched','1');
-  const v = document.getElementById('introVideo');
-  if(v){try{v.pause();}catch(e){}}
-}
-// Pula intro se já viu na sessão
-if(sessionStorage.getItem('introWatched')){
-  document.getElementById('introOverlay').classList.add('hidden');
-} else {
-  document.body.style.overflow='hidden';
-  const video = document.getElementById('introVideo');
-  const fallback = document.getElementById('introFallback');
-  if(video){
-    // Esconde fallback quando o vídeo começa a tocar
-    video.addEventListener('playing', ()=>{
-      if(fallback) fallback.style.display='none';
-    });
-    // Se o vídeo der erro de carregamento, mostra fallback e fecha em 4s
-    video.addEventListener('error', ()=>{
-      if(fallback) fallback.style.display='flex';
-      setTimeout(skipIntro, 4000);
-    });
-  }
-  // Timeout de segurança: se nada acontecer em 16s (vídeo é 14.4s + margem), fecha
-  setTimeout(skipIntro, 16000);
-}
 
 // === NAV ===
 function toggleMenu(){document.getElementById('navMenu').classList.toggle('open')}
